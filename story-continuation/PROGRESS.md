@@ -105,3 +105,17 @@
 - **Task 6 (Report Material):** Created `results/report_tables.md` with 6 ready-to-paste empirical markdown tables for the project report.
 - **Task 7 (UI Demo Helper):** Created `DEMO_SCRIPT.md` providing step-by-step instructions for capturing all 5 required UI screenshots.
 - **Verification Deliverable:** Compiled full PASS/FAIL evaluation in `VERIFICATION_REPORT.md`.
+
+---
+
+## Part B: Amazon SageMaker (Deployment Preparation & Git Sync)
+
+### Stage B0 & B1: Shared Engine & SageMaker Inference Code (Completed - Zero AWS Cost)
+- **Shared Generation Core (`generation_core.py`):** Extracted unified `generate_continuation()` function used across `local_inference.py`, `torchserve/handler.py`, and `sagemaker/code/inference.py`. Rebuilt `story_model.mar` with `generation_core.py` (12 members verified).
+- **SageMaker Inference Handler (`sagemaker/code/inference.py`):** Implemented the 4 SageMaker functions (`model_fn`, `input_fn`, `predict_fn`, `output_fn`) cleanly mapping to TorchServe's lifecycle (`initialize`, `preprocess`, `inference`, `postprocess`).
+- **Offline SageMaker Unit Tests (`tests/test_sagemaker_inference_local.py`):** Verified offline inference execution against saved model weights. Confirmed 100% character-for-character output identity between SageMaker `inference.py` and `local_inference.py` for identical seed. Saved log to `evidence/B1_local_inference_py_test.txt`.
+- **SageMaker Model Tarball (`sagemaker/model.tar.gz`):** Built 291.60 MB tarball containing DistilGPT2 weights at the archive root (`SHA-256: 99b7b16c0b8deca0b629f1ee48bf4c5933ab643bfa3e4df8f1d4ba6338ba8821`).
+- **Dependencies (`requirements-sagemaker.txt`):** Installed `sagemaker==2.257.7` and `boto3==1.44.1`.
+- **SageMaker Automation Scripts:** Created `sagemaker/deploy.py`, `sagemaker/invoke_test.py`, and `sagemaker/cleanup.py`.
+- **GitHub Repository Pushed:** Created remote repository `https://github.com/RathanRaj2007/story-continuation` and pushed the complete codebase to `main`.
+- **Current State:** Stages B0 and B1 are complete and verified. Awaiting student AWS environment variables (`$env:AWS_REGION`, `$env:SAGEMAKER_ROLE_ARN`, `$env:S3_BUCKET`) and explicit `"APPROVE DEPLOY"` before initiating billable endpoint deployment (Stage B2/B3).
