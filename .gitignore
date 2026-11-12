@@ -22,7 +22,11 @@ logs/
 # Environment and sensitive keys
 .env
 *.pem
+*.ppk
 *.key
+ssourl.txt
+*aws_cli*
+*credentials*
 
 # Operating system files
 .DS_Store
