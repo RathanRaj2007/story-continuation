@@ -1,0 +1,29 @@
+# Virtual environments
+.venv/
+*/.venv/
+
+# Python cache
+__pycache__/
+*/__pycache__/
+*.py[cod]
+
+# Model weights and archives
+model_store/
+*/model_store/
+*.mar
+*.tar.gz
+
+# Logs and runtime artifacts
+logs/
+*/logs/
+*.log
+*.pid
+
+# Environment and sensitive keys
+.env
+*.pem
+*.key
+
+# Operating system files
+.DS_Store
+Thumbs.db
